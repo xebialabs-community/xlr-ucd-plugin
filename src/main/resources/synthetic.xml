@@ -26,4 +26,13 @@
         <property name="systemConfiguration" category="output" label="System Configuration" description="The System Configuration Properties" kind="map_string_string" />
     </type>
 
+    <type type="ucd.ApplicationProcessRequest" extends="ucd.Task">
+        <!-- Inputs -->
+        <property name="application" category="input" label="Application" description="Application name or ID" kind="string" required="true"/>
+        <property name="applicationProcess" category="input" label="Application Process" description="Application process name or ID" kind="string" required="true" />
+        <property name="environment" category="input" label="Environment" description="Environment name or ID" kind="string" required="true" />
+        <property name="versions" category="input" label="Versions" description="Map containing for each component (key) the version (value) to deploy." kind="map_string_string" required="true" />
+        <!-- Outputs -->
+        <property name="requestId" category="output" label="Request Id" description="The request id for further status retrieval" kind="string" />
+    </type>
 </synthetic>
