@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+
+    THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS
+    FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALABS.
+
+-->
+
+<synthetic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.xebialabs.com/deployit/synthetic" xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
+
+    <type type="ucd.Server" extends="configuration.HttpConnection">
+    </type>
+
+    <type type="ucd.Task" extends="xlrelease.PythonScript" virtual="true">
+        <!-- Plugin -->
+        <property name="iconLocation" hidden="true" default="ucd/ucd.png"/>
+        <property name="taskColor" hidden="true" default="#0075A3"/>
+        <property name="server" category="input" label="Server" description="The UCD server definition to use" required="true" referenced-type="ucd.Server" kind="ci"/>
+        <property name="username" category="input" required="false" />
+        <property name="password" password="true" category="input" required="false" />
+    </type>
+
+    <type type="ucd.ListSystemConfiguration" extends="ucd.Task">
+        <!-- Outputs -->
+        <property name="systemConfiguration" category="output" label="System Configuration" description="The System Configuration Properties" kind="map_string_string" />
+    </type>
+
+</synthetic>
