@@ -20,5 +20,4 @@ class UCD_Client(object):
         system_configuration_response = self.http_request.get(system_configuration_endpoint, contentType='application/json')
         if not system_configuration_response.isSuccessful():
             raise Exception("Failed to get system configuration properties. Server return [%s], with content [%s]" % (system_configuration_response.status, system_configuration_response.response))
-        print "Received response: [%s]\n" % system_configuration_response.getResponse()
         return json.loads(system_configuration_response.getResponse())

@@ -15,3 +15,14 @@ This plugin offers an interface from XL Release to Urban Code Deploy Server.
 [xlr-ucd-plugin-code-climate-image]: https://codeclimate.com/github/xebialabs-community/xlr-ucd-plugin/badges/gpa.svg
 [xlr-ucd-plugin-code-climate-url]: https://codeclimate.com/github/xebialabs-community/xlr-ucd-plugin
 
+# Development #
+
+* Start XLR: `./gradlew runDocker`
+* Start UCD: 
+  ```
+  docker run -p 8443:8443 -p 8082:8080 -e "LICENSE=accept" 
+      -v $(pwd)/src/test/resources/ucd/server.xml:/opt/ibm-ucd/server/opt/tomcat/conf/server.xml 
+      -v $(pwd)/src/test/resources/ucd/installed.properties:/opt/ibm-ucd/server/conf/server/installed.properties 
+      --name UCD ibmcom/urbancode-deploy
+  ```
+

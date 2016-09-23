@@ -1,0 +1,10 @@
+[
+  {
+    "id": "Configuration/Custom/ucd",
+    "type":"ucd.Server",
+    "title":"localhost",
+    "url":"http://172.17.0.1:8082",
+    "username":"admin",
+    "password":"admin"
+  }
+]
