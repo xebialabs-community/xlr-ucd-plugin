@@ -24,7 +24,10 @@ class UCD_Client(object):
 
     def application_process_request(self, application, application_process, environment, versions):
         application_process_request_endpoint = "/cli/applicationProcessRequest/request"
-        body = {'application': application, 'applicationProcess': application_process, 'environment': environment, 'versions': versions}
+        versions_list = []
+        for component,version in versions.iteritems():
+            versions_list.append({'version':version, 'component':component})
+        body = {'application': application, 'applicationProcess': application_process, 'environment': environment, 'versions': versions_list}
         print "Sending request: [%s]\n" % json.dumps(body)
         application_process_request_response = self.http_request.put(application_process_request_endpoint, json.dumps(body), contentType='application/json')
         if not application_process_request_response.isSuccessful():
