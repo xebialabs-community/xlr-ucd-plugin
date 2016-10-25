@@ -1,0 +1,20 @@
+ucd:
+  image: ibmcom/urbancode-deploy
+  environment:
+      - LICENSE=accept
+  volumes:
+    - ./../ucd/server.xml:/opt/ibm-ucd/server/opt/tomcat/conf/server.xml
+    - ./../ucd/installed.properties:/opt/ibm-ucd/server/conf/server/installed.properties
+  ports:
+   - "8443:8443"
+   - "8082:8080"
+
+xlr:
+  image: xebialabs/xlr_dev_run:v5.0.1.11
+  volumes:
+    - ~/xl-licenses:/license
+    - ./../../../../:/data
+  links:
+   - ucd
+  ports:
+   - "5516:5516"

@@ -8,7 +8,7 @@
     "id": "Configuration/Custom/ucd",
     "type":"ucd.Server",
     "title":"localhost",
-    "url":"http://172.17.0.1:8082",
+    "url":"http://ucd:8080",
     "username":"admin",
     "password":"admin"
   }
