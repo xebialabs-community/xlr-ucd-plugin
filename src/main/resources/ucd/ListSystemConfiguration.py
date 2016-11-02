@@ -7,7 +7,7 @@
 from ucd.UCDClientUtil import UCD_Client_Util
 
 
-ucd_client = UCD_Client_Util.create_ucd_client(server, "admin", "admin")
+ucd_client = UCD_Client_Util.create_ucd_client(server, username, password)
 
 systemConfiguration = ucd_client.list_system_configuration()
 

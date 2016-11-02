@@ -35,4 +35,15 @@
         <!-- Outputs -->
         <property name="requestId" category="output" label="Request Id" description="The request id for further status retrieval" kind="string" />
     </type>
+
+    <type type="ucd.ApplicationProcessRequestStatus" extends="ucd.Task">
+        <!-- Input -->
+        <property name="requestId" category="input" label="Request Id" description="The request id for further status retrieval" kind="string" />
+        <property name="pollingInterval" category="input" default="10" required="true" kind="integer" description="Polling interval in seconds to check task status."/>
+        <property name="numberOfPollingTrials" category="input" default="0" label="Polling Retry Count" required="true" kind="integer" description="Number of times to retry check for task status, 0 means indefinite."/>
+
+        <!-- Outputs -->
+        <property name="requestStatus" category="output" label="Request Status" description="The request status" kind="string" />
+        <property name="requestResult" category="output" label="Request Result" description="The request result" kind="string" />
+    </type>
 </synthetic>

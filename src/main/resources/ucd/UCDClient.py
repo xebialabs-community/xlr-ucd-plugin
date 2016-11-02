@@ -33,3 +33,10 @@ class UCD_Client(object):
         if not application_process_request_response.isSuccessful():
             raise Exception("Failed to execute application process request. Server return [%s], with content [%s]" % (application_process_request_response.status, application_process_request_response.response))
         return json.loads(application_process_request_response.getResponse())["requestId"]
+
+    def application_process_request_status(self, request_id):
+        application_process_request_status_endpoint = "/cli/applicationProcessRequest/requestStatus?request=%s" % request_id
+        application_process_request_status_response = self.http_request.get(application_process_request_status_endpoint, contentType='application/json')
+        if not application_process_request_status_response.isSuccessful():
+            raise Exception("Failed to get status application process request. Server return [%s], with content [%s]" % (application_process_request_status_response.status, application_process_request_status_response.response))
+        return json.loads(application_process_request_status_response.getResponse())
