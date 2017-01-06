@@ -2,7 +2,7 @@
 
 This plugin offers an interface from XL Release to Urban Code Deploy Server. 
 
-# CI status #
+## CI status ##
 
 [![Build Status][xlr-ucd-plugin-travis-image]][xlr-ucd-plugin-travis-url]
 [![Codacy Badge][xlr-ucd-plugin-codacy-image] ][xlr-ucd-plugin-codacy-url]
@@ -15,7 +15,7 @@ This plugin offers an interface from XL Release to Urban Code Deploy Server.
 [xlr-ucd-plugin-code-climate-image]: https://codeclimate.com/github/xebialabs-community/xlr-ucd-plugin/badges/gpa.svg
 [xlr-ucd-plugin-code-climate-url]: https://codeclimate.com/github/xebialabs-community/xlr-ucd-plugin
 
-# Development #
+## Development ##
 
 * Start XLR: `./gradlew runDocker`
 * Start UCD: 
@@ -25,4 +25,8 @@ This plugin offers an interface from XL Release to Urban Code Deploy Server.
       -v $(pwd)/src/test/resources/ucd/installed.properties:/opt/ibm-ucd/server/conf/server/installed.properties 
       --name UCD ibmcom/urbancode-deploy
   ```
+  
+## References ##
++ [UCD REST api](http://www.ibm.com/support/knowledgecenter/SS4GSP_6.2.3/com.ibm.udeploy.reference.doc/topics/rest_api_ref_commands.html)
+
 
