@@ -10,6 +10,7 @@
 <synthetic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.xebialabs.com/deployit/synthetic" xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
 
     <type type="ucd.Server" extends="configuration.HttpConnection">
+        <property name="disableSslVerification" required="true" kind="boolean" default="false" description="Disable SSL verification" />
     </type>
 
     <type type="ucd.Task" extends="xlrelease.PythonScript" virtual="true">

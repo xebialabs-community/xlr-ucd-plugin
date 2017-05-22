@@ -10,6 +10,6 @@ from ucd.UCDClient import UCD_Client
 class UCD_Client_Util(object):
 
     @staticmethod
-    def create_ucd_client(container, username, password):
-        client = UCD_Client.create_client(container, username, password)
+    def create_ucd_client(container, username, password, verifySsl):
+        client = UCD_Client.create_client(container, username, password, verifySsl)
         return client

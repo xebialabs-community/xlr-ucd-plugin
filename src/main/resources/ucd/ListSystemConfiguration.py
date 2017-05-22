@@ -6,8 +6,8 @@
 
 from ucd.UCDClientUtil import UCD_Client_Util
 
-
-ucd_client = UCD_Client_Util.create_ucd_client(server, username, password)
+verifySsl = not server['disableSslVerification']
+ucd_client = UCD_Client_Util.create_ucd_client(server, username, password, verifySsl)
 
 systemConfiguration = ucd_client.list_system_configuration()
 

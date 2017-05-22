@@ -6,8 +6,8 @@
 import time, sys
 from ucd.UCDClientUtil import UCD_Client_Util
 
-
-ucd_client = UCD_Client_Util.create_ucd_client(server, username, password)
+verifySsl = not server['disableSslVerification']
+ucd_client = UCD_Client_Util.create_ucd_client(server, username, password, verifySsl)
 trial = 0
 request_status = None
 request_response = None

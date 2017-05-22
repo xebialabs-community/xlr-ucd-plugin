@@ -5,15 +5,15 @@
 #
 
 import json
-from xlrelease.HttpRequest import HttpRequest
+from ucd.HttpRequest import HttpRequest
 
 class UCD_Client(object):
-    def __init__(self, http_connection, username=None, password=None):
-        self.http_request = HttpRequest(http_connection, username, password)
+    def __init__(self, http_connection, username=None, password=None, verify = True):
+        self.http_request = HttpRequest(http_connection, username, password, verify)
 
     @staticmethod
-    def create_client(http_connection, username=None, password=None):
-        return UCD_Client(http_connection, username, password)
+    def create_client(http_connection, username=None, password=None, verify = True):
+        return UCD_Client(http_connection, username, password, verify)
 
     def list_system_configuration(self):
         system_configuration_endpoint = "/cli/systemConfiguration"
