@@ -7,6 +7,8 @@ This plugin offers an interface from XL Release to Urban Code Deploy Server.
 [![Build Status][xlr-ucd-plugin-travis-image]][xlr-ucd-plugin-travis-url]
 [![Codacy Badge][xlr-ucd-plugin-codacy-image] ][xlr-ucd-plugin-codacy-url]
 [![Code Climate][xlr-ucd-plugin-code-climate-image] ][xlr-ucd-plugin-code-climate-url]
+[![License: MIT][xlr-ucd-plugin-license-image] ][xlr-ucd-plugin-license-url]
+[![Github All Releases][xlr-ucd-plugin-downloads-image] ]()
 
 [xlr-ucd-plugin-travis-image]: https://travis-ci.org/xebialabs-community/xlr-ucd-plugin.svg?branch=master
 [xlr-ucd-plugin-travis-url]: https://travis-ci.org/xebialabs-community/xlr-ucd-plugin
@@ -14,6 +16,9 @@ This plugin offers an interface from XL Release to Urban Code Deploy Server.
 [xlr-ucd-plugin-codacy-url]: https://www.codacy.com/app/joris-dewinne/xlr-ucd-plugin
 [xlr-ucd-plugin-code-climate-image]: https://codeclimate.com/github/xebialabs-community/xlr-ucd-plugin/badges/gpa.svg
 [xlr-ucd-plugin-code-climate-url]: https://codeclimate.com/github/xebialabs-community/xlr-ucd-plugin
+[xlr-ucd-plugin-license-image]: https://img.shields.io/badge/License-MIT-yellow.svg
+[xlr-ucd-plugin-license-url]: https://opensource.org/licenses/MIT
+[xlr-ucd-plugin-downloads-image]: https://img.shields.io/github/downloads/xebialabs-community/xlr-ucd-plugin/total.svg
 
 ## Development ##
 
