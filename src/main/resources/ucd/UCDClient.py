@@ -22,12 +22,12 @@ class UCD_Client(object):
             raise Exception("Failed to get system configuration properties. Server return [%s], with content [%s]" % (system_configuration_response.status, system_configuration_response.response))
         return json.loads(system_configuration_response.getResponse())
 
-    def application_process_request(self, application, application_process, environment, versions):
+    def application_process_request(self, application, application_process, environment, versions, properties):
         application_process_request_endpoint = "/cli/applicationProcessRequest/request"
         versions_list = []
         for component,version in versions.iteritems():
             versions_list.append({'version':version, 'component':component})
-        body = {'application': application, 'applicationProcess': application_process, 'environment': environment, 'versions': versions_list}
+        body = {'application': application, 'applicationProcess': application_process, 'environment': environment, 'properties': properties, 'versions': versions_list}
         print "Sending request: [%s]\n" % json.dumps(body)
         application_process_request_response = self.http_request.put(application_process_request_endpoint, json.dumps(body), contentType='application/json')
         if not application_process_request_response.isSuccessful():

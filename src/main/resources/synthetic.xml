@@ -33,6 +33,7 @@
         <property name="applicationProcess" category="input" label="Application Process" description="Application process name or ID" kind="string" required="true" />
         <property name="environment" category="input" label="Environment" description="Environment name or ID" kind="string" required="true" />
         <property name="versions" category="input" label="Versions" description="Map containing for each component (key) the version (value) to deploy." kind="map_string_string" required="true" />
+        <property name="properties" category="input" label="Properties" description="Map containing the properties for the application process." kind="map_string_string" required="false" />
         <!-- Outputs -->
         <property name="requestId" category="output" label="Request Id" description="The request id for further status retrieval" kind="string" />
     </type>
