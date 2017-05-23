@@ -8,13 +8,13 @@
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-import time, sys
+import time
+
 from ucd.UCDClientUtil import UCD_Client_Util
 
-verifySsl = not server['disableSslVerification']
-ucd_client = UCD_Client_Util.create_ucd_client(server, username, password, verifySsl)
+verify_ssl = not server['disableSslVerification']
+ucd_client = UCD_Client_Util.create_ucd_client(server, username, password, verify_ssl)
 trial = 0
-request_status = None
 request_response = None
 while not numberOfPollingTrials or trial < numberOfPollingTrials:
     trial += 1
@@ -22,9 +22,9 @@ while not numberOfPollingTrials or trial < numberOfPollingTrials:
     request_response = ucd_client.application_process_request_status(requestId)
     requestStatus = request_response["status"]
     requestResult = request_response["result"]
-    print "requestStatus: %s requestResult: %s" % (requestStatus, requestResult)
+    print "Received Request Status: [%s] with Request Result: [%s]\n" % (requestStatus, requestResult)
     if requestStatus in ("CLOSED", "FAULTED"):
         if requestResult not in "SUCCEEDED":
-            raise Exception("Failed to execute application process request. Status [%s], Result [%s]" % (requestStatus, requestResult))
-        else:
-            break
+            raise Exception("Failed to execute application process request. Status [%s], Result [%s]" % (
+            requestStatus, requestResult))
+        break
