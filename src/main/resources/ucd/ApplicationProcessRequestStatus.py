@@ -22,10 +22,9 @@ while not numberOfPollingTrials or trial < numberOfPollingTrials:
     request_response = ucd_client.application_process_request_status(requestId)
     requestStatus = request_response["status"]
     requestResult = request_response["result"]
+    print "requestStatus: %s requestResult: %s" % (requestStatus, requestResult)
     if requestStatus in ("CLOSED", "FAULTED"):
         if requestResult not in "SUCCEEDED":
             raise Exception("Failed to execute application process request. Status [%s], Result [%s]" % (requestStatus, requestResult))
-
-
-
-
+        else:
+            break
