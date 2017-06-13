@@ -23,13 +23,17 @@ class UCD_Client(object):
     def create_client(http_connection, username=None, password=None, verify=True):
         return UCD_Client(http_connection, username, password, verify)
 
+    def check_response(self, response, message):
+        if not response.isSuccessful():
+            raise Exception(message)
+
     def ucd_listsystemconfiguration(self, variables):
         system_configuration_endpoint = "/cli/systemConfiguration"
         system_configuration_response = self.http_request.get(system_configuration_endpoint,
                                                               contentType='application/json')
-        if not system_configuration_response.isSuccessful():
-            raise Exception("Failed to get system configuration properties. Server return [%s], with content [%s]" % (
-                system_configuration_response.status, system_configuration_response.response))
+        self.check_response(system_configuration_response,
+                            "Failed to get system configuration properties. Server return [%s], with content [%s]" % (
+                                system_configuration_response.status, system_configuration_response.response))
         result = json.loads(system_configuration_response.getResponse())
         variables['systemConfiguration'] = result
         return result
@@ -45,9 +49,10 @@ class UCD_Client(object):
         print "Sending request: [%s]\n" % json.dumps(body)
         application_process_request_response = self.http_request.put(application_process_request_endpoint,
                                                                      json.dumps(body), contentType='application/json')
-        if not application_process_request_response.isSuccessful():
-            raise Exception("Failed to execute application process request. Server return [%s], with content [%s]" % (
-                application_process_request_response.status, application_process_request_response.response))
+        self.check_response(application_process_request_response,
+                            "Failed to execute application process request. Server return [%s], with content [%s]" % (
+                                application_process_request_response.status,
+                                application_process_request_response.response))
         result = json.loads(application_process_request_response.getResponse())["requestId"]
         variables['requestId'] = result
         return result
@@ -56,11 +61,10 @@ class UCD_Client(object):
         application_process_request_status_endpoint = "/cli/applicationProcessRequest/requestStatus?request=%s" % request_id
         application_process_request_status_response = self.http_request.get(application_process_request_status_endpoint,
                                                                             contentType='application/json')
-        if not application_process_request_status_response.isSuccessful():
-            raise Exception(
-                "Failed to get status application process request. Server return [%s], with content [%s]" % (
-                    application_process_request_status_response.status,
-                    application_process_request_status_response.response))
+        self.check_response(application_process_request_status_response,
+                            "Failed to get status application process request. Server return [%s], with content [%s]" % (
+                                application_process_request_status_response.status,
+                                application_process_request_status_response.response))
         return json.loads(application_process_request_status_response.getResponse())
 
     def ucd_applicationprocessrequeststatus(self, variables):
@@ -72,7 +76,7 @@ class UCD_Client(object):
             variables['requestStatus'] = request_response["status"]
             variables['requestResult'] = request_response["result"]
             print "Received Request Status: [%s] with Request Result: [%s]\n" % (
-            variables['requestStatus'], variables['requestResult'])
+                variables['requestStatus'], variables['requestResult'])
             if variables['requestStatus'] in ("CLOSED", "FAULTED"):
                 if variables['requestResult'] not in "SUCCEEDED":
                     raise Exception("Failed to execute application process request. Status [%s], Result [%s]" % (
