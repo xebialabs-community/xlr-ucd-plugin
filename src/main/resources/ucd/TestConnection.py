@@ -17,5 +17,5 @@ server['url'] = configuration.url
 server['disableSslVerification'] = configuration.disableSslVerification
 verifySsl = not server['disableSslVerification']
 ucd_client = UCD_Client_Util.create_ucd_client(server, None, None, verifySsl)
-ucd_client.list_system_configuration()
+ucd_client.ucd_listsystemconfiguration({})
 

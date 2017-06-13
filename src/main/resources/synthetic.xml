@@ -11,46 +11,78 @@
 
 -->
 
-<synthetic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.xebialabs.com/deployit/synthetic" xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
+<synthetic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.xebialabs.com/deployit/synthetic"
+           xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
 
     <type type="ucd.Server" extends="configuration.HttpConnection">
-        <property name="scriptLocation" default="ucd/TestConnection.py" hidden="true" />
-        <property name="disableSslVerification" required="true" kind="boolean" default="false" description="Disable SSL verification" />
+        <property name="scriptLocation" default="ucd/TestConnection.py" hidden="true"/>
+        <property name="disableSslVerification" required="true" kind="boolean" default="false"
+                  description="Disable SSL verification"/>
     </type>
 
     <type type="ucd.Task" extends="xlrelease.PythonScript" virtual="true">
         <!-- Plugin -->
+        <property name="scriptLocation" default="ucd/UCDTask.py" hidden="true"/>
         <property name="iconLocation" hidden="true" default="ucd/ucd.png"/>
         <property name="taskColor" hidden="true" default="#0075A3"/>
-        <property name="server" category="input" label="Server" description="The UCD server definition to use" required="true" referenced-type="ucd.Server" kind="ci"/>
-        <property name="username" category="input" required="false" />
-        <property name="password" password="true" category="input" required="false" />
+        <property name="server" category="input" label="Server" description="The UCD server definition to use"
+                  required="true" referenced-type="ucd.Server" kind="ci"/>
+        <property name="username" category="input" required="false"/>
+        <property name="password" password="true" category="input" required="false"/>
     </type>
 
     <type type="ucd.ListSystemConfiguration" extends="ucd.Task">
         <!-- Outputs -->
-        <property name="systemConfiguration" category="output" label="System Configuration" description="The System Configuration Properties" kind="map_string_string" />
+        <property name="systemConfiguration" category="output" label="System Configuration"
+                  description="The System Configuration Properties" kind="map_string_string"/>
     </type>
 
     <type type="ucd.ApplicationProcessRequest" extends="ucd.Task">
         <!-- Inputs -->
-        <property name="application" category="input" label="Application" description="Application name or ID" kind="string" required="true"/>
-        <property name="applicationProcess" category="input" label="Application Process" description="Application process name or ID" kind="string" required="true" />
-        <property name="environment" category="input" label="Environment" description="Environment name or ID" kind="string" required="true" />
-        <property name="versions" category="input" label="Versions" description="Map containing for each component (key) the version (value) to deploy." kind="map_string_string" required="true" />
-        <property name="properties" category="input" label="Properties" description="Map containing the properties for the application process." kind="map_string_string" required="false" />
+        <property name="application" category="input" label="Application" description="Application name or ID"
+                  kind="string" required="true"/>
+        <property name="applicationProcess" category="input" label="Application Process"
+                  description="Application process name or ID" kind="string" required="true"/>
+        <property name="environment" category="input" label="Environment" description="Environment name or ID"
+                  kind="string" required="true"/>
+        <property name="versions" category="input" label="Versions"
+                  description="Map containing for each component (key) the version (value) to deploy."
+                  kind="map_string_string" required="true"/>
+        <property name="properties" category="input" label="Properties"
+                  description="Map containing the properties for the application process." kind="map_string_string"
+                  required="false"/>
         <!-- Outputs -->
-        <property name="requestId" category="output" label="Request Id" description="The request id for further status retrieval" kind="string" />
+        <property name="requestId" category="output" label="Request Id"
+                  description="The request id for further status retrieval" kind="string"/>
+    </type>
+
+    <type type="ucd.SynchronousApplicationProcessRequest" extends="ucd.ApplicationProcessRequest">
+        <!-- Input -->
+        <property name="pollingInterval" category="input" default="10" required="true" kind="integer"
+                  description="Polling interval in seconds to check task status."/>
+        <property name="numberOfPollingTrials" category="input" default="0" label="Polling Retry Count" required="true"
+                  kind="integer" description="Number of times to retry check for task status, 0 means indefinite."/>
+
+        <!-- Outputs -->
+        <property name="requestStatus" category="output" label="Request Status" description="The request status"
+                  kind="string"/>
+        <property name="requestResult" category="output" label="Request Result" description="The request result"
+                  kind="string"/>
     </type>
 
     <type type="ucd.ApplicationProcessRequestStatus" extends="ucd.Task">
         <!-- Input -->
-        <property name="requestId" category="input" label="Request Id" description="The request id for further status retrieval" kind="string" />
-        <property name="pollingInterval" category="input" default="10" required="true" kind="integer" description="Polling interval in seconds to check task status."/>
-        <property name="numberOfPollingTrials" category="input" default="0" label="Polling Retry Count" required="true" kind="integer" description="Number of times to retry check for task status, 0 means indefinite."/>
+        <property name="requestId" category="input" label="Request Id"
+                  description="The request id for further status retrieval" kind="string"/>
+        <property name="pollingInterval" category="input" default="10" required="true" kind="integer"
+                  description="Polling interval in seconds to check task status."/>
+        <property name="numberOfPollingTrials" category="input" default="0" label="Polling Retry Count" required="true"
+                  kind="integer" description="Number of times to retry check for task status, 0 means indefinite."/>
 
         <!-- Outputs -->
-        <property name="requestStatus" category="output" label="Request Status" description="The request status" kind="string" />
-        <property name="requestResult" category="output" label="Request Result" description="The request result" kind="string" />
+        <property name="requestStatus" category="output" label="Request Status" description="The request status"
+                  kind="string"/>
+        <property name="requestResult" category="output" label="Request Result" description="The request result"
+                  kind="string"/>
     </type>
 </synthetic>
