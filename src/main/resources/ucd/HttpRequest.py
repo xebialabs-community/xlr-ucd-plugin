@@ -232,7 +232,7 @@ class HttpRequest:
         response = None
         try:
             if not self.verify:
-                client = self.createHttpClient()
+                client = self.create_http_client()
             elif self.params.proxyUsername and self.params.proxyPassword:
                 credentials = UsernamePasswordCredentials(self.params.proxyUsername, self.params.proxyPassword)
                 auth_scope = AuthScope(self.params.proxyHost, Integer.valueOf(self.params.proxyPort))
@@ -256,11 +256,10 @@ class HttpRequest:
             if client:
                 client.close()
 
-    def createHttpClient(self):
+    def create_http_client(self):
         builder = SSLContextBuilder()
         builder.loadTrustMaterial(None, TrustAllStrategy())
-      
-        tlsVersions = ["TLSv1", "TLSv1.1", "TLSv1.2"]
-        socketfactory = SSLConnectionSocketFactory(builder.build(), tlsVersions, None, SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER)
+        tls_versions = ["TLSv1", "TLSv1.1", "TLSv1.2"]
+        socketfactory = SSLConnectionSocketFactory(builder.build(), tls_versions, None, SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER)
         # print 'DEBUG: Created custom HttpClient to trust all certs\n'
         return HttpClients.custom().setSSLSocketFactory(socketfactory).build()
