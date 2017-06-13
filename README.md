@@ -30,7 +30,16 @@ This plugin offers an interface from XL Release to Urban Code Deploy Server.
       -v $(pwd)/src/test/resources/ucd/installed.properties:/opt/ibm-ucd/server/conf/server/installed.properties 
       --name UCD ibmcom/urbancode-deploy
   ```
-  
+## Tasks ##
++ Application Process Request
+  ![Application Process Request](images/apr.png)
++ Application Process Request Status
+  ![Application Process Request Status](images/apr_status.png)
++ Synchronous Application Process Request
+  ![Synchronous Application Process Request](images/sync_apr.png)
++ List System Configuration
+  ![List System Configuration](images/sys_config.png)
+
 ## References ##
 + [UCD REST api](http://www.ibm.com/support/knowledgecenter/SS4GSP_6.2.3/com.ibm.udeploy.reference.doc/topics/rest_api_ref_commands.html)
 
