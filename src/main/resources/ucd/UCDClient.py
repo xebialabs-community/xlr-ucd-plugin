@@ -15,6 +15,11 @@ import time
 from ucd.HttpRequest import HttpRequest
 
 
+def check_response(response, message):
+    if not response.isSuccessful():
+        raise Exception(message)
+
+
 class UCD_Client(object):
     def __init__(self, http_connection, username=None, password=None, verify=True):
         self.http_request = HttpRequest(http_connection, username, password, verify)
@@ -23,15 +28,11 @@ class UCD_Client(object):
     def create_client(http_connection, username=None, password=None, verify=True):
         return UCD_Client(http_connection, username, password, verify)
 
-    def check_response(self, response, message):
-        if not response.isSuccessful():
-            raise Exception(message)
-
     def ucd_listsystemconfiguration(self, variables):
         system_configuration_endpoint = "/cli/systemConfiguration"
         system_configuration_response = self.http_request.get(system_configuration_endpoint,
                                                               contentType='application/json')
-        self.check_response(system_configuration_response,
+        check_response(system_configuration_response,
                             "Failed to get system configuration properties. Server return [%s], with content [%s]" % (
                                 system_configuration_response.status, system_configuration_response.response))
         result = json.loads(system_configuration_response.getResponse())
@@ -49,7 +50,7 @@ class UCD_Client(object):
         print "Sending request: [%s]\n" % json.dumps(body)
         application_process_request_response = self.http_request.put(application_process_request_endpoint,
                                                                      json.dumps(body), contentType='application/json')
-        self.check_response(application_process_request_response,
+        check_response(application_process_request_response,
                             "Failed to execute application process request. Server return [%s], with content [%s]" % (
                                 application_process_request_response.status,
                                 application_process_request_response.response))
@@ -61,7 +62,7 @@ class UCD_Client(object):
         application_process_request_status_endpoint = "/cli/applicationProcessRequest/requestStatus?request=%s" % request_id
         application_process_request_status_response = self.http_request.get(application_process_request_status_endpoint,
                                                                             contentType='application/json')
-        self.check_response(application_process_request_status_response,
+        check_response(application_process_request_status_response,
                             "Failed to get status application process request. Server return [%s], with content [%s]" % (
                                 application_process_request_status_response.status,
                                 application_process_request_status_response.response))
