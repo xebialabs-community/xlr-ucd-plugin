@@ -7,7 +7,7 @@ deploy:
   provider: releases
   api_key:
     secure: HaLgQjTqegx0wexEexbBKB+D1DGwbiW7zQgLMpbA/d1PUQRLHMIZLNE8u1V5/4/qLSRqmp/VdLHwvSWbcc7dPrzNN09rwEb7HPLORkCvSHq6/pOgnJ1xIWU4CMjNewjxYS94AnQN+0+PFdFw7mqTuf6cz/IVCZxypCEzckziI220DLYBXBS9vNSko55979yhQv7U31vd/CJ63cp21qvemAcFncQr98FKq6JsbpMtOOjAqjvN/VPpnphhoV7DxbiKEMZ9ZePClg69HpZ+Q/o2qUm/BKd32ZmpZosTE27Gaj81TVnLeLfveeBRt0jTK4gisS5++t6AfK01DHGexT4hVgG34jkjQQX76imCMa+sd61Ixs2P4rVRl9zqJKFBlxoeOkdXhenLqDZL0c/jKYXXtIln6f24rnQ26t1L7zbdI2I0G+gS0aZfXAMSXoFioZCplydRkuuHrr/HOVmlBk7LF36cvXSbv2UVwATrNjOZs0Sd0fBxrOtnQ7l9g3vSufV59kHE/ic80Lrbn8Pphh3gRDsOrVGF/vHvz5Aho0kCxLwqoz6hajQ0kIVvfIz3kC2xITeFWYwYgUUupLUopj2GiIpOdcPhZJ/9Lr0+zr3cxW/l7orWwmuVT/Eo9JdyhX+GaYvRvNkU9x1A1VFF/R3AOc2eSDi+zmCASbqdA9vE/Zs=
-  file: build/libs/xlr-ucd-plugin-1.4.1.jar
+  file: build/libs/xlr-ucd-plugin-1.5.0.jar
   skip_cleanup: true
   on:
     tags: true
