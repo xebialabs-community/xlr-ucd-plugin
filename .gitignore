@@ -2,3 +2,4 @@
 .idea
 build
 supervisord.*
+deploy_key

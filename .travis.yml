@@ -1,13 +1,28 @@
 language: java
+before_install:
+  - openssl aes-256-cbc -K $encrypted_6d0100271ced_key -iv $encrypted_6d0100271ced_iv
+    -in deploy_key.enc -out /tmp/deploy_key -d
+    - eval "$(ssh-agent -s)"
+    - echo -e "Host $DIST_HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+    - chmod 600 /tmp/deploy_key
+    - ssh-add /tmp/deploy_key
+deploy:
+  - provider: releases
+    api_key:
+      secure: hDegpCXCj9DYUfBEpu9v4ZoHhDOij/zunpo04GqMNjPuZ1CuxD61ceolzhvdPyRCxx34m9DRpt2YVNznOTwYwENsVNg1V5iI7T1ZmUfq7CUiOcCvfJabiqRj8V20Xm3szPgSdE3YmLoh/+ljPL5WNXhS/i0H2WYx2ARYoMwp+G4VCXnIBCF5pMPueGV63NNKcdhP6PL8Nq4ZevpZ628DsdVHI6Qp/xCUdQXkLv6qMo/7xxu9uQQAPoZr4HGcpY/z5LlWDghnjJYvFOq3r3CAznfdCJIkBzr2Kr9fTKswq7tpcg+FPCEpNWQmf9Pre48pfFSkaOFol1z4+FbjxCTP1Ya4QNXw0VS2/XAR95Mdzl8wvCAOnJ8X2dxLYXOyQ7L7JzB1Jf1zFemKmy7NtKmVkPcc0N+wV9hcApxuak4H4jQxPMWPrRlfpQJf6Cl5WFWqlX6w1NrB2k9uK5zAurUwvly5kDSU6Dmhrxec0SiVOy/5qsVq7vFPqRQkJqTQTDXcndzFaZIjvBilStkksM4szsT2lvpncZPHFf8dgIEePvk+yPDgD6nsqS3v9GyVDITkSruqBwijeTLa05fqmklfiDJ5vZHHj87HsMEL0KQwzkFM1luWsCs68cYamn4PnhGo6P88af1vufXKWPpTL/ZySBRmhlzrIo4rW/nEe8w0eMw=
+    file: build/libs/*.jar
+    skip_cleanup: true
+    on:
+      all_branches: true
+      tags: true
+      repo: xebialabs-community/xlr-ucd-plugin
+  - provider: script
+    skip_cleanup: true
+    script: rsync --update -raz -i $TRAVIS_BUILD_DIR/build/libs/*.jar $DIST_USER@$DIST_HOST:$DIST_PATH/${TRAVIS_REPO_SLUG#*/}/
+    on:
+      all_branches: true
+      tags: true
+      repo: xebialabs-community/xlr-ucd-plugin
 notifications:
   slack:
     secure: Firh/BKd1JowxB338mFoDnAxw1OkbOe0U6PVj72WrKhU+gLaXV+bbTrbQYGsbnJJnn3EYz/F9SLzbOIqkg7M6beJZJw3q6xHwo7bPUCe6iZTFK4+bo1nn/jvxmOcnP4UfCyJtwohCr7Sv3MPExhJUYBOYTCQqwN9aF7vd06eTi2qlaN/2Dgh/dgR2HQfngtRJEGR6JK+EoqkXkqiPFF2x3afCAMt5tIsxgUFjI5mbrQCnYLghUHz+4xqFPoPxkrnTEW5eDzJhpyIFQuEmeNhr4HdBSexRdBT0/MQrw0iOXMoBAEX+Th/iUJ7b5BhJ5hxOxw5bXVPDBGII7Htkl8eoVZAqIQwaZelj/Knuwa61MPkfzn8qOxNj+mZtyn/G2Z2tRlhUn3OjKozGRZ+vYA4E+/tnleTsmw+6iigjrk/arRhBN+d6szlTnXo+VKg7zKRJOzOdw2TgAjP9+zDrUf6fsTmSjG1s/GIkjDsZ8pPpvoEXhRPFwGUVOALxzat/J2p8JFEGFTrA7fJknnYFRdefFmoEhSKgnjLoIrfyX/+QZICF4SfmUISOWIbE7mJW7YWIlkRmi4CUNizRJUnGHlmEB8laKTWLNb/XD59eviUODED10j894DaFOSwxPktdxBcoNPxyFwAPtVOALgO+6ReRf5VN1t737fk/ChZJfSvK7Q=
-deploy:
-  provider: releases
-  api_key:
-    secure: hDegpCXCj9DYUfBEpu9v4ZoHhDOij/zunpo04GqMNjPuZ1CuxD61ceolzhvdPyRCxx34m9DRpt2YVNznOTwYwENsVNg1V5iI7T1ZmUfq7CUiOcCvfJabiqRj8V20Xm3szPgSdE3YmLoh/+ljPL5WNXhS/i0H2WYx2ARYoMwp+G4VCXnIBCF5pMPueGV63NNKcdhP6PL8Nq4ZevpZ628DsdVHI6Qp/xCUdQXkLv6qMo/7xxu9uQQAPoZr4HGcpY/z5LlWDghnjJYvFOq3r3CAznfdCJIkBzr2Kr9fTKswq7tpcg+FPCEpNWQmf9Pre48pfFSkaOFol1z4+FbjxCTP1Ya4QNXw0VS2/XAR95Mdzl8wvCAOnJ8X2dxLYXOyQ7L7JzB1Jf1zFemKmy7NtKmVkPcc0N+wV9hcApxuak4H4jQxPMWPrRlfpQJf6Cl5WFWqlX6w1NrB2k9uK5zAurUwvly5kDSU6Dmhrxec0SiVOy/5qsVq7vFPqRQkJqTQTDXcndzFaZIjvBilStkksM4szsT2lvpncZPHFf8dgIEePvk+yPDgD6nsqS3v9GyVDITkSruqBwijeTLa05fqmklfiDJ5vZHHj87HsMEL0KQwzkFM1luWsCs68cYamn4PnhGo6P88af1vufXKWPpTL/ZySBRmhlzrIo4rW/nEe8w0eMw=
-  file: build/libs/xlr-ucd-plugin-1.5.0.jar
-  skip_cleanup: true
-  on:
-    tags: true
-    repo: xebialabs-community/xlr-ucd-plugin
