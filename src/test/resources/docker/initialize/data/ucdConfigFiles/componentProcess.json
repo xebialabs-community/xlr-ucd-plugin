@@ -1,0 +1,169 @@
+{
+    "active": "true",
+    "component": "helloWorld",
+    "configActionType": "ADD",
+    "defaultWorkingDir": "${p:resource/work.dir}/${p:component.name}",
+    "description": "",
+    "inventoryActionType": "ADD",
+    "name": "helloProcess",
+    "propDefs": [],
+    "rootActivity": {
+      "children": [
+        {
+          "allowFailure": false,
+          "children": [],
+          "commandName": "Delete Files and Directories",
+          "impersonationUseSudo": false,
+          "name": "Clean work space",
+          "pluginName": "File Utils",
+          "pluginVersion": 31,
+          "properties":{
+              "baseDir":".",
+              "includes":"*",
+              "excludes":"",
+              "followSymlinks":"false",
+              "caseSensitive":"true"
+           },
+          "showHidden": false,
+          "type": "plugin",
+          "useImpersonation": false
+        },
+        {
+          "allowFailure": false,
+          "children": [],
+          "commandName": "Download Artifacts",
+          "impersonationUseSudo": false,
+          "name": "Download Artifacts",
+          "pluginName": "IBM UrbanCode Deploy Versioned File Storage",
+          "pluginVersion": 18,
+          "properties":{
+             "directoryOffset":".",
+             "artifactSetBaseDir":"",
+             "fileIncludePatterns":"**/*",
+             "fileExcludePatterns":"",
+             "syncMode":"true",
+             "fullVerification":"true",
+             "setFileExecuteBits":"false",
+             "verifyFileIntegrity":"false",
+             "repositoryUrl":"${p:server.url}/vfs",
+             "repositoryId":"${p:component/code_station/repository}",
+             "label":"${p:version.name}",
+             "serverUrl":"${p:server.url}",
+             "compId":"${p:component.id}",
+             "resId":"${p:resource.id}",
+             "charset":""
+          },
+          "showHidden": false,
+          "type": "plugin",
+          "useImpersonation": false
+        },
+        {
+           "allowFailure":false,
+           "children": [],
+           "commandName":"Create .zip File",
+           "impersonationUseSudo":false,
+           "name":"Compress artifacts",
+           "pluginName":"File Utils",
+           "pluginVersion":31,
+           "properties":{
+              "zipName":"helloWorld.zip",
+              "baseDir":".",
+              "includes":"*",
+              "excludes":"",
+              "update":"false",
+              "followSymlinks":"false",
+              "caseSensitive":"true"
+           },
+          "showHidden": false,
+          "type": "plugin",
+          "useImpersonation": false
+        },
+        {
+           "allowFailure":false,
+           "children": [],
+           "commandName":"Move Directory",
+           "impersonationUseSudo":false,
+           "name":"Deploy artifacts",
+           "pluginName":"File Utils",
+           "pluginVersion":31,
+           "properties":{
+              "sourceDir":".",
+              "destDir":"${p:helloHome}/target",
+              "includes":"*.zip",
+              "excludes":"",
+              "mapperRules":""
+           },
+          "showHidden": false,
+          "type": "plugin",
+          "useImpersonation": false
+        },
+        {
+          "children": [],
+          "name": "FINISH",
+          "type": "finish"
+        }
+      ],
+      "edges": [
+        {
+          "to": "Clean work space",
+          "type": "ALWAYS",
+          "value": ""
+        },
+        {
+          "from": "Clean work space",
+          "to": "Download Artifacts",
+          "type": "ALWAYS",
+          "value": ""
+        },
+        {
+          "from": "Download Artifacts",
+          "to": "Compress artifacts",
+          "type": "ALWAYS",
+          "value": ""
+        },
+        {
+          "from": "Compress artifacts",
+          "to": "Deploy artifacts",
+          "type": "ALWAYS",
+          "value": ""
+        },
+        {
+          "from": "Deploy artifacts",
+          "to": "FINISH",
+          "type": "ALWAYS",
+          "value": ""
+        }
+      ],
+      "name": "GRAPH",
+      "offsets": [
+        {
+          "name": "Clean work space",
+          "x": "-65",
+          "y": "90"
+        },
+        {
+          "name": "Download Artifacts",
+          "x": "-70",
+          "y": "210"
+        },
+        {
+          "name": "Compress artifacts",
+          "x": "-70",
+          "y": "290"
+        },
+        {
+          "name": "Deploy artifacts",
+          "x": "-65",
+          "y": "370"
+        },
+        {
+          "name": "FINISH",
+          "x": "-60",
+          "y": "450"
+        }
+      ],
+      "type": "graph"
+    },
+    "status": "Active",
+    "takesVersion": "true"
+  }

@@ -1,0 +1,9 @@
+{
+    "application": "hello Application",
+    "applicationProcess": "hello App Process",
+    "environment": "helloDeploy",
+    "versions": [{
+      "version": "1.0",
+      "component": "helloWorld"
+    }]
+  }

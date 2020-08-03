@@ -1,0 +1,11 @@
+{
+    "name": "helloWorld",
+    "description": "",
+    "importAutomatically": false,
+    "useVfs": true,
+    "sourceConfigPlugin": "File System (Versioned)",
+    "defaultVersionType": "FULL",
+    "properties": {
+      "FileSystemVersionedComponentProperties/basePath": "/helloworld"
+    }
+  }

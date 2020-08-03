@@ -1,0 +1,67 @@
+{
+    "application": "1736d252-47ef-4c03-8cc5-038988608aa8",
+    "description": "",
+    "inventoryManagementType": "AUTOMATIC",
+    "name": "hello App Process",
+    "offlineAgentHandling": "PRE_EXECUTION_CHECK",
+    "rootActivity": {
+      "children": [
+        {
+          "children": [{
+            "children": [{
+              "allowFailure": false,
+              "children": [],
+              "componentName": "helloWorld",
+              "componentProcessName": "helloProcess",
+              "name": "Deploy helloWorld",
+              "properties": {},
+              "type": "componentProcess"
+            }],
+            "componentName": "helloWorld",
+            "name": "inventoryVersionCheck",
+            "status": "Active",
+            "type": "inventoryVersionDiff"
+          }],
+          "componentName": "helloWorld",
+          "failFast": "false",
+          "maxIteration": "-1",
+          "name": "Deploy helloWorld",
+          "runOnlyOnFirst": "false",
+          "type": "componentEnvironmentIterator"
+        },
+        {
+          "children": [],
+          "name": "FINISH",
+          "type": "finish"
+        }
+      ],
+      "edges": [
+        {
+          "to": "Deploy helloWorld",
+          "type": "ALWAYS",
+          "value": ""
+        },
+        {
+          "from": "Deploy helloWorld",
+          "to": "FINISH",
+          "type": "ALWAYS",
+          "value": ""
+        }
+      ],
+      "name": "GRAPH",
+      "offsets": [
+        {
+          "name": "Deploy helloWorld",
+          "x": "-35",
+          "y": "210"
+        },
+        {
+          "name": "FINISH",
+          "x": "0",
+          "y": "420"
+        }
+      ],
+      "propDefs": [],
+      "type": "graph"
+    }
+  }

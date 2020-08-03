@@ -1,0 +1,292 @@
+[{
+    "id": "Applications/Release579169b0403444bda10e1eb9ed2d7de7",
+    "type": "xlrelease.Release",
+    "title": "ucdTest",
+    "scheduledStartDate": "2020-07-17T16:00:00Z",
+    "flagStatus": "OK",
+    "overdueNotified": false,
+    "maxConcurrentReleases": 100,
+    "releaseTriggers": [],
+    "teams": [
+      {
+        "id": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Teame953b9c59dad46babb85028e8cdb3b88",
+        "type": "xlrelease.Team",
+        "teamName": "Release Admin",
+        "members": [],
+        "roles": [],
+        "permissions": [
+          "release#edit_precondition",
+          "release#edit",
+          "release#reassign_task",
+          "release#edit_security",
+          "release#view",
+          "release#lock_task",
+          "release#start",
+          "release#edit_blackout",
+          "template#view",
+          "release#edit_failure_handler",
+          "release#abort",
+          "release#edit_task"
+        ]
+      },
+      {
+        "id": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Team54773b29508042918ec16da54bcb36a8",
+        "type": "xlrelease.Team",
+        "teamName": "Template Owner",
+        "members": [
+          "admin"
+        ],
+        "roles": [],
+        "permissions": [
+          "template#edit",
+          "template#lock_task",
+          "template#view",
+          "template#edit_triggers",
+          "template#edit_precondition",
+          "template#edit_security",
+          "template#create_release",
+          "template#edit_failure_handler"
+        ]
+      }
+    ],
+    "memberViewers": [],
+    "roleViewers": [],
+    "attachments": [],
+    "phases": [
+      {
+        "id": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Phase21f4c7fc18d04a0bae0a27b2fd528630",
+        "type": "xlrelease.Phase",
+        "title": "New Phase",
+        "flagStatus": "OK",
+        "overdueNotified": false,
+        "tasks": [
+          {
+            "id": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Phase21f4c7fc18d04a0bae0a27b2fd528630/Task25ff705515ea431db39ce76d4d7ab9ec",
+            "type": "xlrelease.CustomScriptTask",
+            "title": "List System Config",
+            "flagStatus": "OK",
+            "overdueNotified": false,
+            "comments": [],
+            "container": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Phase21f4c7fc18d04a0bae0a27b2fd528630",
+            "facets": [],
+            "attachments": [],
+            "status": "PLANNED",
+            "waitForScheduledStartDate": true,
+            "delayDuringBlackout": false,
+            "postponedDueToBlackout": false,
+            "hasBeenFlagged": false,
+            "hasBeenDelayed": false,
+            "taskFailureHandlerEnabled": false,
+            "failuresCount": 0,
+            "variableMapping": {},
+            "tags": [],
+            "dueSoonNotified": false,
+            "locked": false,
+            "checkAttributes": false,
+            "watchers": [],
+            "pythonScript": {
+              "id": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Phase21f4c7fc18d04a0bae0a27b2fd528630/Task25ff705515ea431db39ce76d4d7ab9ec/PythonScript",
+              "type": "ucd.ListSystemConfiguration",
+              "customScriptTask": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Phase21f4c7fc18d04a0bae0a27b2fd528630/Task25ff705515ea431db39ce76d4d7ab9ec",
+              "server": "Configuration/Custom/UCD Server - localhost",
+              "systemConfiguration": {}
+            },
+            "keepPreviousOutputPropertiesOnRetry": false
+          },
+          {
+            "id": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Phase21f4c7fc18d04a0bae0a27b2fd528630/Task8c0bdad73aa7465398605b1590239775",
+            "type": "xlrelease.CustomScriptTask",
+            "title": "App Proc Request",
+            "flagStatus": "OK",
+            "overdueNotified": false,
+            "comments": [],
+            "container": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Phase21f4c7fc18d04a0bae0a27b2fd528630",
+            "facets": [],
+            "attachments": [],
+            "status": "PLANNED",
+            "waitForScheduledStartDate": true,
+            "delayDuringBlackout": false,
+            "postponedDueToBlackout": false,
+            "hasBeenFlagged": false,
+            "hasBeenDelayed": false,
+            "taskFailureHandlerEnabled": false,
+            "failuresCount": 0,
+            "variableMapping": {
+              "pythonScript.requestId": "${AppProcReqResult}"
+            },
+            "tags": [],
+            "dueSoonNotified": false,
+            "locked": false,
+            "checkAttributes": false,
+            "watchers": [],
+            "pythonScript": {
+              "id": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Phase21f4c7fc18d04a0bae0a27b2fd528630/Task8c0bdad73aa7465398605b1590239775/PythonScript",
+              "type": "ucd.ApplicationProcessRequest",
+              "customScriptTask": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Phase21f4c7fc18d04a0bae0a27b2fd528630/Task8c0bdad73aa7465398605b1590239775",
+              "server": "Configuration/Custom/UCD Server - localhost",
+              "application": "hello Application",
+              "applicationProcess": "hello App Process",
+              "environment": "helloDeploy",
+              "versions": {
+                "helloWorld": "1.0"
+              },
+              "properties": {}
+            },
+            "keepPreviousOutputPropertiesOnRetry": false
+          },
+          {
+            "id": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Phase21f4c7fc18d04a0bae0a27b2fd528630/Task7b9c383b8b7e452f9351ed76d6e4f14e",
+            "type": "xlrelease.CustomScriptTask",
+            "title": "App Proc Request Status",
+            "flagStatus": "OK",
+            "overdueNotified": false,
+            "comments": [],
+            "container": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Phase21f4c7fc18d04a0bae0a27b2fd528630",
+            "facets": [],
+            "attachments": [],
+            "status": "PLANNED",
+            "waitForScheduledStartDate": true,
+            "delayDuringBlackout": false,
+            "postponedDueToBlackout": false,
+            "hasBeenFlagged": false,
+            "hasBeenDelayed": false,
+            "taskFailureHandlerEnabled": false,
+            "failuresCount": 0,
+            "variableMapping": {
+              "pythonScript.requestStatus": "${AppProcRequestStatus}",
+              "pythonScript.requestResult": "${AppProcReqResultFromStatusCall}"
+            },
+            "tags": [],
+            "dueSoonNotified": false,
+            "locked": false,
+            "checkAttributes": false,
+            "watchers": [],
+            "pythonScript": {
+              "id": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Phase21f4c7fc18d04a0bae0a27b2fd528630/Task7b9c383b8b7e452f9351ed76d6e4f14e/PythonScript",
+              "type": "ucd.ApplicationProcessRequestStatus",
+              "customScriptTask": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Phase21f4c7fc18d04a0bae0a27b2fd528630/Task7b9c383b8b7e452f9351ed76d6e4f14e",
+              "server": "Configuration/Custom/UCD Server - localhost",
+              "requestId": "${AppProcReqResult}",
+              "pollingInterval": 10,
+              "numberOfPollingTrials": 0
+            },
+            "keepPreviousOutputPropertiesOnRetry": false
+          },
+          {
+            "id": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Phase21f4c7fc18d04a0bae0a27b2fd528630/Task261f89b9d2c2496eadd30e234789f40d",
+            "type": "xlrelease.CustomScriptTask",
+            "title": "Sync App Process Req",
+            "flagStatus": "OK",
+            "overdueNotified": false,
+            "comments": [],
+            "container": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Phase21f4c7fc18d04a0bae0a27b2fd528630",
+            "facets": [],
+            "attachments": [],
+            "status": "PLANNED",
+            "waitForScheduledStartDate": true,
+            "delayDuringBlackout": false,
+            "postponedDueToBlackout": false,
+            "hasBeenFlagged": false,
+            "hasBeenDelayed": false,
+            "taskFailureHandlerEnabled": false,
+            "failuresCount": 0,
+            "variableMapping": {
+              "pythonScript.requestStatus": "${SyncRequestStatus}",
+              "pythonScript.requestId": "${SyncRequestId}",
+              "pythonScript.requestResult": "${SyncRequestResult}"
+            },
+            "tags": [],
+            "dueSoonNotified": false,
+            "locked": false,
+            "checkAttributes": false,
+            "watchers": [],
+            "pythonScript": {
+              "id": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Phase21f4c7fc18d04a0bae0a27b2fd528630/Task261f89b9d2c2496eadd30e234789f40d/PythonScript",
+              "type": "ucd.SynchronousApplicationProcessRequest",
+              "customScriptTask": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Phase21f4c7fc18d04a0bae0a27b2fd528630/Task261f89b9d2c2496eadd30e234789f40d",
+              "server": "Configuration/Custom/UCD Server - localhost",
+              "application": "hello Application",
+              "applicationProcess": "hello App Process",
+              "environment": "helloDeploy",
+              "versions": {
+                "helloWorld": "1.0"
+              },
+              "properties": {},
+              "pollingInterval": 10,
+              "numberOfPollingTrials": 0
+            },
+            "keepPreviousOutputPropertiesOnRetry": false
+          }
+        ],
+        "release": "Applications/Release579169b0403444bda10e1eb9ed2d7de7",
+        "status": "PLANNED"
+      }
+    ],
+    "queryableStartDate": "2020-07-17T16:00:00Z",
+    "realFlagStatus": "OK",
+    "status": "TEMPLATE",
+    "tags": [],
+    "variables": [
+      {
+        "id": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Variableefd2aa22d68f407baf78cbd64bec1bfe",
+        "type": "xlrelease.StringVariable",
+        "key": "AppProcReqResult",
+        "requiresValue": false,
+        "showOnReleaseStart": false,
+        "inherited": false
+      },
+      {
+        "id": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Variablec4cc4ade97f84987af0ef3ed6014ef78",
+        "type": "xlrelease.StringVariable",
+        "key": "AppProcRequestStatus",
+        "requiresValue": false,
+        "showOnReleaseStart": false,
+        "inherited": false
+      },
+      {
+        "id": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Variablee987c393d14b4e4f8370fdff58e7c4ba",
+        "type": "xlrelease.StringVariable",
+        "key": "AppProcReqResultFromStatusCall",
+        "requiresValue": false,
+        "showOnReleaseStart": false,
+        "inherited": false
+      },
+      {
+        "id": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Variable0f1b257168454926a5f78edb9b105cec",
+        "type": "xlrelease.StringVariable",
+        "key": "SyncRequestId",
+        "requiresValue": false,
+        "showOnReleaseStart": false,
+        "inherited": false
+      },
+      {
+        "id": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Variablecbe639091b5a446daa9ea43ac3c9b8bf",
+        "type": "xlrelease.StringVariable",
+        "key": "SyncRequestStatus",
+        "requiresValue": false,
+        "showOnReleaseStart": false,
+        "inherited": false
+      },
+      {
+        "id": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Variable8b9f916d232043f0b836346866a60fb1",
+        "type": "xlrelease.StringVariable",
+        "key": "SyncRequestResult",
+        "requiresValue": false,
+        "showOnReleaseStart": false,
+        "inherited": false
+      }
+    ],
+    "calendarPublished": false,
+    "tutorial": false,
+    "abortOnFailure": false,
+    "allowConcurrentReleasesFromTrigger": true,
+    "runningTriggeredReleasesCount": 0,
+    "createdFromTrigger": false,
+    "extensions": [],
+    "autoStart": false,
+    "automatedResumeCount": 0,
+    "riskScore": "000",
+    "totalRiskScore": "0000",
+    "riskProfile": "Configuration/riskProfiles/Default risk profile"
+  }]
+  
