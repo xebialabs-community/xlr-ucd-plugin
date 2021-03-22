@@ -39,6 +39,8 @@ class UCD_Client(object):
         variables['systemConfiguration'] = result
         return result
 
+# TODO: add 'date' option for scheduled deployments
+
     def ucd_applicationprocessrequest(self, variables):
         application_process_request_endpoint = "/cli/applicationProcessRequest/request"
         versions_list = []
@@ -69,21 +71,54 @@ class UCD_Client(object):
         return json.loads(application_process_request_status_response.getResponse())
 
     def ucd_applicationprocessrequeststatus(self, variables):
-        trial = 0
-        while not variables['numberOfPollingTrials'] or trial < variables['numberOfPollingTrials']:
-            trial += 1
-            time.sleep(variables['pollingInterval'])
-            request_response = self.application_process_request_status(variables['requestId'])
-            variables['requestStatus'] = request_response["status"]
-            variables['requestResult'] = request_response["result"]
-            print "Received Request Status: [%s] with Request Result: [%s]\n" % (
-                variables['requestStatus'], variables['requestResult'])
-            if variables['requestStatus'] in ("CLOSED", "FAULTED"):
-                if variables['requestResult'] not in "SUCCEEDED":
-                    raise Exception("Failed to execute application process request. Status [%s], Result [%s]" % (
-                        variables['requestStatus'], variables['requestResult']))
-                break
+        '''        
+        The UCD request returns the following statuses:
+        CANCELING
+        CLOSED
+        COMPENSATING
+        EXECUTING
+        FAULTED
+        FAULTING
+        INITIALIZED
+        PENDING
+        UNINITIALIZED
+
+        The UCD request returns the following results:
+        APPROVAL REJECTED
+        AWAITING APPROVAL
+        CANCELED
+        COMPENSATED
+        FAILED TO START
+        FAULTED
+        NONE
+        SCHEDULED FOR FUTURE
+        SUCCEEDED
+        UNINITIALIZED
+        '''
+        
+        # get current status
+        request_response = self.application_process_request_status(variables['requestId'])
+        variables['requestStatus'] = request_response["status"]
+        variables['requestResult'] = request_response["result"]
+
+        # update task status
+        print ("Received Request Status: [%s] with Request Result: [%s]\n").format(variables['requestStatus'], variables['requestResult'])
+
+        # determine if we're done
+        if variables['requestStatus'] in ("CLOSED", "FAULTED"):
+            task.setStatusLine("Result: %s" % variables['requestResult'])
+            if variables['requestResult'] not in "SUCCEEDED":
+                raise Exception("Failed to execute application process request. Status [%s], Result [%s]" % (
+                    variables['requestStatus'], variables['requestResult']))
+            else:
+                print("Processing complete")
+
+        # not done, continue checking
+        else:
+            task.setStatusLine("Status: %s" % variables['requestStatus'])
+            task.schedule('ucd/UCDTask.wait-for-status.py')
 
     def ucd_synchronousapplicationprocessrequest(self, variables):
         self.ucd_applicationprocessrequest(variables)
-        self.ucd_applicationprocessrequeststatus(variables)
+        task.schedule('ucd/UCDTask.wait-for-status.py')
+
