@@ -21,7 +21,7 @@ This plugin offers an interface from XL Release to Urban Code Deploy Server.
 ## Requirements
 
 * XL Release**   9.0.0+
-* This plugin has been tested with XL Release 9.7.0 and UCD 7.1.0
+* This plugin has been tested with XL Release 9.8.0 and UCD 7.1.0
 
 ## Installation
 
