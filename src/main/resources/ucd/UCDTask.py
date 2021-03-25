@@ -1,5 +1,5 @@
 #
-# Copyright 2020 XEBIALABS
+# Copyright 2021 XEBIALABS
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 #
@@ -11,7 +11,7 @@
 from ucd.UCDClientUtil import UCD_Client_Util
 
 verify_ssl = not server['disableSslVerification']
-ucd_client = UCD_Client_Util.create_ucd_client(server, username, password, verify_ssl)
+ucd_client = UCD_Client_Util.create_ucd_client(server, task, username, password, verify_ssl)
 method = str(task.getTaskType()).lower().replace('.', '_')
 call = getattr(ucd_client, method)
 output = call(locals())

@@ -1,5 +1,5 @@
 #
-# Copyright 2020 XEBIALABS
+# Copyright 2021 XEBIALABS
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 #
@@ -14,6 +14,6 @@ from ucd.UCDClient import UCD_Client
 class UCD_Client_Util(object):
 
     @staticmethod
-    def create_ucd_client(container, username, password, verifySsl):
-        client = UCD_Client.create_client(container, username, password, verifySsl)
+    def create_ucd_client(container, task, username, password, verifySsl):
+        client = UCD_Client.create_client(container, task, username, password, verifySsl)
         return client

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--
 
-    Copyright 2020 XEBIALABS
+    Copyright 2021 XEBIALABS
 
     Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -51,18 +51,19 @@
         <property name="properties" category="input" label="Properties"
                   description="Map containing the properties for the application process." kind="map_string_string"
                   required="false"/>
+        <property name="scheduleDate" category="input" label="(Optional) Future Date and Time to Schedule Process "
+                  description="You can optionally schedule the application process for a future start. Use a 24 hour clock for hours. Format: yyyy-mm-
+  dd HH:mm Example: 2021-03-23 13:30 This string will be interpreted by your UCD server so be certain to consider that server's time zone." required="false"/>
         <!-- Outputs -->
         <property name="requestId" category="output" label="Request Id"
                   description="The request id for further status retrieval" kind="string"/>
     </type>
 
     <type type="ucd.SynchronousApplicationProcessRequest" extends="ucd.ApplicationProcessRequest">
-        <!-- Input -->
-        <property name="pollingInterval" category="input" default="10" required="true" kind="integer"
-                  description="Polling interval in seconds to check task status."/>
-        <property name="numberOfPollingTrials" category="input" default="0" label="Polling Retry Count" required="true"
-                  kind="integer" description="Number of times to retry check for task status, 0 means indefinite."/>
-
+        <!-- Inputs -->
+        <property name="scheduleDate" category="input" label="(Optional) Future Date and Time to Schedule Process "
+                  description="You can optionally schedule the application process for a future start. Use a 24 hour clock for hours. Format: yyyy-mm-
+  dd HH:mm Example: 2021-03-23 13:30 This string will be interpreted by your UCD server so be certain to consider that server's time zone." required="false"/>
         <!-- Outputs -->
         <property name="requestStatus" category="output" label="Request Status" description="The request status"
                   kind="string"/>
@@ -74,10 +75,6 @@
         <!-- Input -->
         <property name="requestId" category="input" label="Request Id"
                   description="The request id for further status retrieval" kind="string"/>
-        <property name="pollingInterval" category="input" default="10" required="true" kind="integer"
-                  description="Polling interval in seconds to check task status."/>
-        <property name="numberOfPollingTrials" category="input" default="0" label="Polling Retry Count" required="true"
-                  kind="integer" description="Number of times to retry check for task status, 0 means indefinite."/>
 
         <!-- Outputs -->
         <property name="requestStatus" category="output" label="Request Status" description="The request status"

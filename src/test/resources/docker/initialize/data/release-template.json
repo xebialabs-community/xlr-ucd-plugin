@@ -166,9 +166,7 @@
               "type": "ucd.ApplicationProcessRequestStatus",
               "customScriptTask": "Applications/Release579169b0403444bda10e1eb9ed2d7de7/Phase21f4c7fc18d04a0bae0a27b2fd528630/Task7b9c383b8b7e452f9351ed76d6e4f14e",
               "server": "Configuration/Custom/UCD Server - localhost",
-              "requestId": "${AppProcReqResult}",
-              "pollingInterval": 10,
-              "numberOfPollingTrials": 0
+              "requestId": "${AppProcReqResult}"
             },
             "keepPreviousOutputPropertiesOnRetry": false
           },
@@ -211,9 +209,7 @@
               "versions": {
                 "helloWorld": "1.0"
               },
-              "properties": {},
-              "pollingInterval": 10,
-              "numberOfPollingTrials": 0
+              "properties": {}
             },
             "keepPreviousOutputPropertiesOnRetry": false
           }
