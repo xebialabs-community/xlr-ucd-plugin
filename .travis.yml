@@ -9,8 +9,7 @@ before_install:
   - ssh-add /tmp/deploy_key
 deploy:
   - provider: releases
-    api_key:
-      secure: hDegpCXCj9DYUfBEpu9v4ZoHhDOij/zunpo04GqMNjPuZ1CuxD61ceolzhvdPyRCxx34m9DRpt2YVNznOTwYwENsVNg1V5iI7T1ZmUfq7CUiOcCvfJabiqRj8V20Xm3szPgSdE3YmLoh/+ljPL5WNXhS/i0H2WYx2ARYoMwp+G4VCXnIBCF5pMPueGV63NNKcdhP6PL8Nq4ZevpZ628DsdVHI6Qp/xCUdQXkLv6qMo/7xxu9uQQAPoZr4HGcpY/z5LlWDghnjJYvFOq3r3CAznfdCJIkBzr2Kr9fTKswq7tpcg+FPCEpNWQmf9Pre48pfFSkaOFol1z4+FbjxCTP1Ya4QNXw0VS2/XAR95Mdzl8wvCAOnJ8X2dxLYXOyQ7L7JzB1Jf1zFemKmy7NtKmVkPcc0N+wV9hcApxuak4H4jQxPMWPrRlfpQJf6Cl5WFWqlX6w1NrB2k9uK5zAurUwvly5kDSU6Dmhrxec0SiVOy/5qsVq7vFPqRQkJqTQTDXcndzFaZIjvBilStkksM4szsT2lvpncZPHFf8dgIEePvk+yPDgD6nsqS3v9GyVDITkSruqBwijeTLa05fqmklfiDJ5vZHHj87HsMEL0KQwzkFM1luWsCs68cYamn4PnhGo6P88af1vufXKWPpTL/ZySBRmhlzrIo4rW/nEe8w0eMw=
+    token: $GITHUB_TOKEN
     file: build/libs/*.jar
     skip_cleanup: true
     on:
