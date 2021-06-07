@@ -87,6 +87,8 @@ NOTE:
 8. The UCD Server runs on the [localhost port 8443](https://localhost:8443/)
 9. The UCD username / password is admin / admin
 
+* Note:  As of June 2021, the UCD images do not appear to be available on DockerHub.  Lynn D'Amato and Dave Roberts have local copies.
+
 * Before running the demo, be sure to create the plugin by opening a terminal, cd into the plugin source code directory, and run
 
 ```bash
