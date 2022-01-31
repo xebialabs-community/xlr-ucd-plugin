@@ -1,0 +1,48 @@
+{
+  "id": {
+    "artifactId": "xlr-ucd-plugin",
+    "groupId": "com.xebialabs.xlrelease.plugins",
+    "version": "2.0.5"
+  },
+  "metadata": {
+	  "updatedDate": "2022-01-31",
+    "logo" : "icon/xlr-ucd-plugin.png",
+    "popularity":"3",
+    "rating" : "3",
+    "reviewed" : "10",
+    "capability": ["UrbanCode Deploy Plugin"],
+    "categories": [
+      "Deployment orchestration"
+    ],
+    "description": "The UrbanCode Deploy plugin for XL Release allows you to use UrbanCode Deploy to deploy applications as part of your templates and releases.",
+    "features": [
+      "Deployment and associated operations"
+    ],
+    "links": [
+      {
+        "name": "Website",
+        "url": "https://github.com/xebialabs-community/xlr-ucd-plugin"
+      },
+      {
+        "name": "Documentation",
+        "url": "https://github.com/xebialabs-community/xlr-ucd-plugin#readme"
+      }
+    ],
+    "maturity": "Mature",
+    "name": "UCD Plugin",
+    "requirements": {
+      "product": "Release",
+      "versions": [
+        "== 10.4.x","10.3.x","10.2.x","10.1.x","10.0.x"
+      ]
+    },
+    "screenshots": [
+    ],
+    "supportedBy": "Community",
+    "author": {
+        "author": [],
+        "Community": ["Customer Success"],
+        "Partner": []
+    }
+  }
+}
