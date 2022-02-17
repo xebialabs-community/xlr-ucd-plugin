@@ -43,10 +43,6 @@ jobs:
           ssh-key: ${{ secrets.key }}
 
       - run: |
-          pwd
-          ls
-          ls integrations-marketplace
           cp integrations-marketplace/githubactions.sh .
-          ls
           chmod 777 githubactions.sh
           ./githubactions.sh ${{ env.MATCHED_FILES }} ${{ env.plugin_name }} $PWD 'community'
