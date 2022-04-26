@@ -34,7 +34,8 @@ jobs:
             manifest.json
             synthetic.xml
             *.png
-      - run: echo ${{ env.MATCHED_FILES }}
+            *.svg
+      - run: echo ${{ env.GIT_DIFF_FILTERED }}
 
       - uses: actions/checkout@v2
         with:
@@ -45,4 +46,4 @@ jobs:
       - run: |
           cp integrations-marketplace/githubactions.sh .
           chmod 777 githubactions.sh
-          ./githubactions.sh ${{ env.MATCHED_FILES }} ${{ env.plugin_name }} $PWD 'community'
+          ./githubactions.sh ${{ env.GIT_DIFF_FILTERED }} ${{ env.plugin_name }} $PWD 'community'
