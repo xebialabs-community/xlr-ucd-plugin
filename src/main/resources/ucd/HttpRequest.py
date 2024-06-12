@@ -1,5 +1,5 @@
 #
-# Copyright 2021 XEBIALABS
+# Copyright 2024 XEBIALABS
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 #
@@ -40,6 +40,10 @@ class HttpRequest:
         :param password: an password
             (optional)
         """
+        if params.get("authenticationMethod"):
+            params.put("authenticationMethod", str(params.get("authenticationMethod").name()).lower())
+        if params.get("oauth2GrantType"):
+            params.put("oauth2GrantType", str(params.get("oauth2GrantType").name()).lower())
         self.params = HttpConnection(params)
         self.username = username
         self.password = password
